@@ -13,7 +13,7 @@ const UserModel    = require('./models/user')
 
 
 mongoose
-  .connect('mongodb://localhost/pass', {useNewUrlParser: true, useUnifiedTopology: true})
+  .connect('mongodb://localhost/pass', {useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
