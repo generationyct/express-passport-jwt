@@ -28,7 +28,8 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-// Middleware Setup
+
+// Middleware Set
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -57,11 +58,13 @@ app.use(require('node-sass-middleware')({
   sourceMap: true
 }));
       
+const partialsPath = path.join(__dirname, '../views/partials')
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+hbs.registerPartials(partialsPath)
 
 
 
@@ -72,6 +75,7 @@ app.locals.title = 'Sign up , Login and use CRUD!!';
 
 const index = require('./routes/index');
 app.use('/', index);
+
 
 
 module.exports = app;
